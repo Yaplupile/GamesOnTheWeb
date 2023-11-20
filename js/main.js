@@ -3,13 +3,16 @@
 
 // DECLARE GLOBAL VARIABLES //
 
-
 let canvas;
 let engine;
 let scene;
 
+// EXECUTE GAME CODE //
+
+window.onload = startGame;
+
 function startGame() {
-    canvas = document.getElementById("renderCanvas");
+    canvas = document.getElementById("myCanvas");
     engine = new BABYLON.Engine(canvas, true);
     scene = createScene();
     engine.runRenderLoop(function () {
