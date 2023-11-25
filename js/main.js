@@ -61,3 +61,7 @@ window.addEventListener('keyup', (event) => {
         inputStates.space = false;
     }
 }, false);
+
+window.addEventListener("resize", function () {
+    engine.resize();
+});
