@@ -19,8 +19,10 @@ function startGame() {
     engine = new BABYLON.Engine(canvas, true);
     sceneManager = new scene(canvas, engine);
     scene_1 = sceneManager.createScene();
-    engine.runRenderLoop(function () {
-        sceneManager.updateScene(scene_1, inputStates);
+    scene_1.executeWhenReady(function () {
+        engine.runRenderLoop(function () {
+            sceneManager.updateScene(scene_1, inputStates);
+        });
     });
 }
 

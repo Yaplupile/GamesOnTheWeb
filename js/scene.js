@@ -5,7 +5,6 @@ export default class scene{
     constructor(canvas, engine){
         this.canvas = canvas;
         this.engine = engine;
-        this.scene = this.createScene();
     }
     
     createScene = function () {
@@ -15,8 +14,8 @@ export default class scene{
         const sceneGravity = new BABYLON.Vector3(0, gravity/framePerSecond, 0);
         scene.enablePhysics(sceneGravity, new BABYLON.CannonJSPlugin());
 
-        //this.playerManager = new player(this.canvas,scene,this.engine)
-        //this.player = this.playerManager.player;
+        this.playerManager = new player(this.canvas,scene,this.engine)
+        this.player = this.playerManager.player;
 
         this.cameraManager = new camera(this.canvas, scene, this.engine)
         this.camera = this.cameraManager.createCamera(scene);
@@ -31,7 +30,10 @@ export default class scene{
     };
 
     updateScene = function (scene,inputStates) {
-        //this.playerManager.updatePlayer(this.player,inputStates);
+        
+        
+        this.playerManager.updatePlayer(this.player,inputStates,scene.cameras[0]);
         scene.render();
+        
     };
 }

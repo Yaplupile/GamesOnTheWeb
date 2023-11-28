@@ -20,12 +20,10 @@ export default class camera{
         camera.speed = 0.3;
         camera.angularSensibility = 3000;
 
-        console.log(camera.inputs);
         camera.keysUp.push(90); // Z
         camera.keysDown.push(83); // S
         camera.keysLeft.push(81); // Q
         camera.keysRight.push(68); // D
-        
-        
+              
     };
 }

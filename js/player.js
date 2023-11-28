@@ -16,8 +16,30 @@ export default class player{
         return player;
     };
 
+    movePlayer = function (player,inputStates,camera) {
+        if (inputStates.up) {
+            player.moveWithCollisions(player.calcMovePOV(0, 0, player.speed));
+        }
+        if (inputStates.down) {
+            player.moveWithCollisions(player.calcMovePOV(0, 0, -player.speed));
+        }
+        if (inputStates.left) {
+            player.moveWithCollisions(player.calcMovePOV(-player.speed, 0, 0));
+        }
+        if (inputStates.right) {
+            player.moveWithCollisions(player.calcMovePOV(player.speed, 0, 0));
+        }
+        if (inputStates.space) {
+            if (player.grounded) {
+                player.grounded = false;
+                player.physicsImpostor.applyImpulse(new BABYLON.Vector3(0, 300, 0), player.getAbsolutePosition());
+            }
+        }
+        player.rotation = camera.rotation;
+    }
 
-   updatePlayer = function (player,inputStates) {
-        this.movePlayer(player,inputStates);
+
+   updatePlayer = function (player,inputStates,camera) {
+        this.movePlayer(player,inputStates,camera);
    }
 }
