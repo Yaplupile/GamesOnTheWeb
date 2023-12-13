@@ -15,15 +15,23 @@ export default class camera{
         };
         camera.applyGravity = true;
         camera.checkCollisions = true;
+        camera.grounded = true;
         camera.ellipsoid = new BABYLON.Vector3(1, 1, 1);
         camera.minZ = 0.45;
         camera.speed = 0.3;
         camera.angularSensibility = 3000;
 
-        camera.keysUp.push(90); // Z
-        camera.keysDown.push(83); // S
-        camera.keysLeft.push(81); // Q
-        camera.keysRight.push(68); // D
-              
+        camera.inputs.attached.keyboard.keysDown = [];
+        camera.inputs.attached.keyboard.keysLeft = [];
+        camera.inputs.attached.keyboard.keysRight = [];
+        camera.inputs.attached.keyboard.keysUp = [];
+
     };
+
+    moveCamera = function (camera,player) {
+        camera.position = player.position ;
+        player.frontVector.x = Math.sin(player.rotation.y) * -1;
+        player.frontVector.z = Math.cos(player.rotation.y) * -1;
+        player.frontVector.y = 0;
+    }
 }
